@@ -3,7 +3,7 @@ import csv
 
 myList = []
 
-Total_months = 0
+Total_Months = 0
 Net_Total = 0
 Greatest_Profit = 0
 Greatest_Loss = 0
@@ -17,7 +17,7 @@ with open(bank_data, newline='', encoding='utf-8') as csvfile:
     next(csvreader)
     
     for row in csvreader:
-        Total_months = Total_months + 1
+        Total_Months = Total_Months + 1
         Net_Total = Net_Total + int(row[1])
 
         if int(row[1]) > Greatest_Profit:
@@ -27,9 +27,14 @@ with open(bank_data, newline='', encoding='utf-8') as csvfile:
             Greatest_Loss = int(row[1])
             Bad_Month = row[0]
 
-print(f'In {Great_Month} we gained {Greatest_Profit}')
-print(f'In {Bad_Month} we lost {Greatest_Loss}')
-        
+
+
+print("\nFinancial Analysis")
+print("--------------------------")
+print(f'Total Months: {Total_Months}')
+print(f'Total: ${Net_Total}')
+print(f'Greatest Increase in Profits: {Great_Month} $({Greatest_Profit})')
+print(f'Greatest Decrease in Profits: {Bad_Month} S({Greatest_Loss})')        
 
 # Set variable for output file
 output_file = "C:\\Python-Challenge\\PyBank\\Analysis\\bank_analysis.txt"

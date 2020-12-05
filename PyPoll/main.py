@@ -1,8 +1,8 @@
 # import csv module
 import csv
 
-# Defining variables, some set to 0 for later arguments
-# Setting flag in order to skip first entry for average change calculation
+# Create two empty lists to append candidates and their vote counts
+# Defining variables set to zero for later arguments/comparisons
 
 Candidate_List = []
 Vote_Count = []
@@ -20,16 +20,17 @@ with open(poll_data, newline='', encoding='utf-8') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
     next(csvreader)
 
-    # For each row in the csv, defining the first row as the month
-    # and the second row as the current profit for each month
+    # For each row in the csv, defining the 3rd entry in esch row as Candidate
 
     for row in csvreader:
 
         Candidate = row[2]
 
-        # Found Flag, used to skip the first entry for average change
-        # calculation, every other row calculates the change between 
-        # consecutive months and adds them to get the total
+        # Checking if candidate is in the list, if not in the list
+        # add into list and start their vote count with 1 so indecies 
+        # are associated between the two lists.  If already in list
+        # add another vote to the appropriate index in list.  Then count
+        # each row to get the total amount of votes
 
         if Candidate not in Candidate_List:
             Candidate_List.append(Candidate)
@@ -39,26 +40,20 @@ with open(poll_data, newline='', encoding='utf-8') as csvfile:
         
         Votes += 1
 
-            # Comparing the change between each consecutive pair of months
-            # in order to find which months had the greatest increase in
-            # profit and the greatest decrease in profit
 
-
-        # After each change calculation and comparison, set the current profit
-        # to the previous profit to be used for next calculation.  Also counting
-        # each month and adding together the total profit for all months
-        
-
-# After all changes calculated, find the average of the changes.
-# Subtract one from total months since we did not need to find the change
-# for the first month
-
-# Printing in the format requested, print all calculations made.
+# Printing in the format requested, print header and total votes counted.
 
 print("\nElection Results")
 print("--------------------------")
 print(f'Total Votes: {Votes}')
 print("--------------------------")
+
+# Looping through the candidate list and checking the associated vote count
+# Comparing the vote counts to see who has the most and is therefore the
+# winna-mon like cinnamon.  Percent vote calculated by taking the Vote count
+# from list associated with each candidate and divide by the total votes.
+# The print line is alos included in the loop to print all necessary values.
+# Format the percents to correct decimal places.
 
 for can in Candidate_List:
     Total_Votes = Vote_Count[Candidate_List.index(can)]
@@ -68,6 +63,8 @@ for can in Candidate_List:
     Percent_Vote = format((Vote_Count[Candidate_List.index(can)]/Votes) * 100, ".3f")
 
     print(f'{can}:{Percent_Vote}% ({Vote_Count[Candidate_List.index(can)]})')
+
+# Print the winner and format lines    
          
 print("--------------------------")
 print(f'Winner: {Winner}')
@@ -75,11 +72,12 @@ print("--------------------------")
 
 # Set variable for output file
 
-output_file = "C:\\Python-Challenge\\PyPoll\\Analysis\\election_analysis.txt"
+result_file = "C:\\Python-Challenge\\PyPoll\\Analysis\\election_analysis.txt"
 
-#  Open the output file in the same format as printed in terminal
+# Open the output file in the same format as printed in terminal, loop
+# needed again for Percent Change lines.
 
-with open(output_file, "w") as text_file:
+with open(result_file, "w") as text_file:
     text_file.write("Election Results\n")
     text_file.write("--------------------------\n")
     text_file.write(f'Total Votes: {Votes}\n')

@@ -65,12 +65,11 @@ for can in Candidate_List:
     if Total_Votes > Most_Votes:
         Most_Votes = Total_Votes
         Winner = can
+    Percent_Vote = Vote_Count[Candidate_List.index(can)]/Votes
 
-#print(f'{Candidate}:{Percentage}% ({Vote_Count})')
-#print(f'{Candidate}:{Percentage}% ({Vote_Count})')
-#print(f'{Candidate}:{Percentage}% ({Vote_Count})')
-#print(f'{Candidate}:{Percentage}% ({Vote_Count})')      
-#print("--------------------------")
+    print(f'{can}:{Percent_Vote}% ({Vote_Count[Candidate_List.index(can)]})')
+         
+print("--------------------------")
 print(f'Winner: {Winner}')
 print("--------------------------")
 
@@ -85,10 +84,16 @@ with open(output_file, "w") as text_file:
     text_file.write("--------------------------\n")
     text_file.write(f'Total Votes: {Votes}\n')
     text_file.write("--------------------------\n")
-    #text_file.write(f'{Candidate}:{Percentage}% ({Vote_Count})\n')
-    #text_file.write(f'{Candidate}:{Percentage}% ({Vote_Count})\n')
-    #text_file.write(f'{Candidate}:{Percentage}% ({Vote_Count})\n')
-    #text_file.write(f'{Candidate}:{Percentage}% ({Vote_Count})\n')      
-    #text_file.write("--------------------------\n")
+
+    for can in Candidate_List:
+        Total_Votes = Vote_Count[Candidate_List.index(can)]
+        if Total_Votes > Most_Votes:
+            Most_Votes = Total_Votes
+            Winner = can
+        Percent_Vote = Vote_Count[Candidate_List.index(can)]/Votes
+
+        text_file.write(f'{can}:{Percent_Vote}% ({Vote_Count[Candidate_List.index(can)]})')
+     
+    text_file.write("--------------------------\n")
     text_file.write(f'Winner: {Winner}\n')
     text_file.write("--------------------------\n")

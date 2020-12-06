@@ -74,46 +74,33 @@ with open(employee_data, newline='', encoding='utf-8') as csvfile:
     for row in csvreader:
         
         emp_id = row[0]
-        name = row[1]
-        date = row[2]
-        social = row[3]
+        name = row[1].split()
+        date = row[2].split("-")
+        social = row[3].split("-")
         states = row[4]
 
         Emp_ID.append(emp_id)
 
-        name.split()
-        print(name)
         First_Name.append(name[0])
         Last_Name.append(name[1])
 
-        date.split("-")
         DOB.append(date[1] + "/" + date[2] + "/" + date[0])
 
-        social.split("-")
         SSN.append("***-**-" + social[2])
 
-        State.append(us_state_abbreviation[states])
+        State.append(us_state_abbrev[states])
 
 
-
-
-
-
-
-
-
-
-#cleaned_csv = zip(Emp_Id, First_Name, Last_Name, DOB, SSN, State)
+NewHR_csv = zip(Emp_ID, First_Name, Last_Name, DOB, SSN, State)
        
+output_file = "C:\\Python-Challenge\\PyBoss\\Analysis\\employee_info.csv"
 
-#output_file = "C:\\Python-Challenge\\PyBoss\\Analysis\\employee_info.txt"
-
-#with open(output_file, "w") as csv_file:
-    #writer = csv.writer(csv_file)
+with open(output_file, "w") as csv_file:
+    writer = csv.writer(csv_file)
 
     # Write the header row
-    #writer.writerow(["Emp ID", "First Name", "Last Name", "DOB",
-    #                 "SSN", "State"])
+    writer.writerow(["Emp ID", "First Name", "Last Name", "DOB",
+                     "SSN", "State"])
 
     # Write in zipped rows
-    #writer.writerows(cleaned_csv)
+    writer.writerows(NewHR_csv)

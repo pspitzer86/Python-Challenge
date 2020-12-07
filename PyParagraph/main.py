@@ -2,6 +2,7 @@
 import re
 
 Letter_Count = 0
+Sent_Length = 0
 
 my_paragraph = "C:\\Python-Challenge\\PyParagraph\\Resources\\paragraph_2.txt"
 
@@ -11,7 +12,13 @@ with open(my_paragraph, 'r') as text:
     # Store all of the text inside a variable called "lines"
     lines = text.read()
 
-    Sentence_Count = len(re.findall(r'\.', lines))
+    Sentence_Split = lines.split(".")
+    Sentence_Count = len(Sentence_Split)
+
+    for sent in Sentence_Split:
+        Sent_Length = Sent_Length + len(sent.split())
+
+    Ave_Sent_Length = round(Sent_Length/Sentence_Count,2)
 
     for char in '-.,\n':
         lines = lines.replace(char, '')
@@ -32,7 +39,7 @@ print("--------------------------")
 print(f"Approximate Word Count : {Word_Count}")
 print(f"Approximate Sentence Count : {Sentence_Count}")
 print(f"Average Letter Count : {Average_Letter}")
-#print(f"Average Sentence Length : {}")
+print(f"Average Sentence Length : {Ave_Sent_Length}")
 
 
 # Set variable for output file
@@ -47,7 +54,7 @@ with open(output_file, "w") as text_file:
     text_file.write(f'Approxiate Word Count : {Word_Count}\n')
     text_file.write(f'Approximate Sentence Count : {Sentence_Count}\n')
     text_file.write(f'Average Letter Count : {Average_Letter}\n')
-    #text_file.write(f'Average Sentence Length : {}\n')
+    text_file.write(f'Average Sentence Length : {Ave_Sent_Length}\n')
     
 
 

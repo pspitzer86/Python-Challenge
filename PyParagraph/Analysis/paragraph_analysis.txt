@@ -1,0 +1,4 @@
+Paragraph Analysis
+--------------------------
+Approxiate Word Count : 285
+Approximate Sentence Count : 11

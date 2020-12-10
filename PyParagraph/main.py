@@ -1,10 +1,28 @@
+# Keeping in folder to show attempt at code without regular expressions.
+# While practicing on sample paragraph 2 in Gitlab (about Jackie Chan),
+# hint code re.split("(?<=[.!?]) +", paragraph), did not seem to work well
+# and researching re's also wasn't yielding good solutions.
+
+# Since labels are "Approximate" word count, sentence count, etc. messed
+# with code without re's in order to complete extra assignment.
+
+# Collaborated with Kate Spitzer for solution using re's, turns out the
+# hint code works much better with sample paragraph 1 in Gitlab.  Collab
+# code in other .py file.
+
+# Code practiced on paragraph_2.txt provided in Gitlab.
+
+# Paragraph used for assignment from:
+# https://www.britannica.com/animal/Dimetrodon
+# written by The Editors of Encyclopedia Britannica
+
 
 import re
 
 Letter_Count = 0
 Sent_Length = 0
 
-my_paragraph = "C:\\Python-Challenge\\PyParagraph\\Resources\\paragraph_2.txt"
+my_paragraph = "C:\\Python-Challenge\\PyParagraph\\Resources\\Dimetrodon.txt"
 
 # Open the file in "read" mode ('r') and store the contents in the variable "text"
 with open(my_paragraph, 'r') as text:
@@ -19,6 +37,9 @@ with open(my_paragraph, 'r') as text:
         Sent_Length = Sent_Length + len(sent.split())
 
     Ave_Sent_Length = round(Sent_Length/Sentence_Count,2)
+
+    # Found on https://codeburst.io/python-basics-11-word-count-filter-out-punctuation-dictionary-manipulation-and-sorting-lists-3f6c55420855
+    # by Michael Galarnyk
 
     for char in '-.,\n':
         lines = lines.replace(char, '')
